@@ -147,9 +147,11 @@ const Canvas = () => {
   );
 
   // Define flow groups - which nodes belong to which flow
+  // Key must match the node ID that represents the flow
   const flowGroups = useMemo(() => ({
-    'learning-paths': ['tech-stack', 'style-guide', 'landing', 'learning-paths', 'category-software', 'category-personal', 'category-business', 'lessons'],
-    'profile': ['tech-stack', 'style-guide', 'landing', 'profile', 'experience', 'skills']
+    'learning-paths': ['tech-stack', 'style-guide', 'landing', 'learning-paths', 'category-software', 'category-ai', 'category-projects', 'lessons'],
+    'profile': ['tech-stack', 'style-guide', 'landing', 'profile', 'experience', 'skills'],
+    'projects': ['tech-stack', 'style-guide', 'landing', 'projects', 'project-detail']
   }), []);
 
   // Filter nodes - only show selected flows completely, hide others
@@ -187,9 +189,9 @@ const Canvas = () => {
     );
   }, [selectedModules, edges, flowGroups]);
 
-  // Get module list for dropdown - only Learning Path and Professional Profile flows
+  // Get module list for dropdown - Bitácora, Perfil and Proyectos flows
   const moduleList = useMemo(() => {
-    const allowedModules = ['learning-paths', 'profile'];
+    const allowedModules = ['learning-paths', 'profile', 'projects'];
     return initialNodes
       .filter(node => allowedModules.includes(node.id))
       .map(node => ({ id: node.id, label: node.data.label }))

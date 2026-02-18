@@ -109,9 +109,9 @@ export const nodes = [
           cta: "Ver perfil completo →"
         },
         { 
-          name: "Últimas Lecciones", 
-          description: "Preview de contenido reciente del módulo de aprendizaje",
-          cta: "Explorar rutas de estudio →"
+          name: "Últimas Entradas", 
+          description: "Preview de contenido reciente de la bitácora técnica",
+          cta: "Explorar bitácora →"
         },
         { 
           name: "Perfil Profesional", 
@@ -135,34 +135,36 @@ export const nodes = [
     },
   },
   
-  // Flujo de Aprendizaje - Módulo principal
+  // Bitácora Pública - Módulo principal
   {
     id: "learning-paths",
     type: "MODULE",
     position: { x: 50, y: 50 },
     data: {
-      label: "Rutas de Estudio",
-      description: "Módulo para gestionar rutas de aprendizaje estructuradas. Frontend-only con datos JSON.",
+      label: "Bitácora Pública",
+      description: "Bitácora técnica pública: material de estudio, papers, documentación de proyectos y exploraciones.",
       fields: [
         { name: "id", type: "string (slug)" },
         { name: "title", type: "string" },
         { name: "description", type: "text" },
-        { name: "category", type: "enum(dev, coaching, personal_growth, business)" },
+        { name: "type", type: "enum(study, project, paper, exploration)" },
+        { name: "category", type: "enum(dev, ai, systems, entrepreneurship, personal)" },
+        { name: "status", type: "enum(active, completed, archived, draft)" },
         { name: "level", type: "enum(beginner, intermediate, advanced)" },
         { name: "coverImage", type: "string" },
         { name: "isPublished", type: "boolean" },
         { name: "publishedAt", type: "date" },
         { name: "updatedAt", type: "date" },
       ],
-      dataSource: "JSON estático en /data/courses/",
+      dataSource: "JSON estático en /data/logbook/",
       priority: 1,
       phase: 1,
-      url: "/rutas",
+      url: "/bitacora",
       zone: "public"
     },
   },
   
-  // Categorías de Aprendizaje
+  // Categorías de Contenido
   {
     id: "category-software",
     type: "MODULE",
@@ -170,7 +172,7 @@ export const nodes = [
     data: {
       label: "Desarrollo de Software",
       description: "Técnico Laboral en Programación y Desarrollo de Software",
-      courses: [
+      items: [
         "Lógica de Programación",
         "Fundamentos de Python",
         "Control de Versiones con Git",
@@ -186,58 +188,63 @@ export const nodes = [
     },
   },
   {
-    id: "category-personal",
+    id: "category-ai",
     type: "MODULE",
     position: { x: 50, y: 250 },
     data: {
-      label: "Crecimiento Personal",
-      description: "Rutas de desarrollo personal y bienestar",
-      courses: [
-        "(Estructura por definir)"
+      label: "Inteligencia Artificial",
+      description: "Papers, experimentos y documentación sobre IA y sistemas inteligentes",
+      items: [
+        "Experimentos con LLMs",
+        "Arquitectura de Agentes",
+        "Fine-tuning y RAG",
+        "Proyectos de IA aplicada"
       ],
       dataSource: "JSON estático",
       priority: 1,
       phase: 1,
-      zone: "public",
-      status: "pending"
+      zone: "public"
     },
   },
   {
-    id: "category-business",
+    id: "category-projects",
     type: "MODULE",
     position: { x: 300, y: 250 },
     data: {
-      label: "Negocio",
-      description: "Rutas de emprendimiento y negocios",
-      courses: [
-        "(Estructura por definir)"
+      label: "Proyectos en Desarrollo",
+      description: "Documentación técnica de proyectos personales y emprendimientos",
+      items: [
+        "MegaMan Platform",
+        "Herramientas de Productividad",
+        "Experimentos técnicos",
+        "Open Source contributions"
       ],
       dataSource: "JSON estático",
       priority: 1,
       phase: 1,
-      zone: "public",
-      status: "pending"
+      zone: "public"
     },
   },
   
-  // Lecciones individuales
+  // Entradas individuales
   {
     id: "lessons",
     type: "MODULE",
     position: { x: 50, y: 450 },
     data: {
-      label: "Lecciones",
-      description: "Lecciones individuales dentro de las rutas de estudio. Cargadas desde JSON.",
+      label: "Entradas",
+      description: "Entradas individuales de la bitácora: lecciones, papers, documentación. Cargadas desde JSON.",
       fields: [
         { name: "id", type: "string" },
-        { name: "pathId", type: "string → Course" },
+        { name: "logbookId", type: "string → Bitácora" },
         { name: "title", type: "string" },
-        { name: "type", type: "enum(video, article, exercise, resource, quiz)" },
+        { name: "type", type: "enum(article, video, paper, doc, note, code)" },
         { name: "url", type: "string" },
         { name: "duration", type: "integer (minutos)" },
         { name: "order", type: "integer" },
         { name: "isPublished", type: "boolean" },
         { name: "content", type: "markdown | string" },
+        { name: "tags", type: "string[]" },
       ],
       dataSource: "JSON estático",
       priority: 1,
@@ -308,6 +315,58 @@ export const nodes = [
       priority: 2,
       phase: 2,
       url: "/habilidades",
+      zone: "public"
+    },
+  },
+  
+  // ===== FASE 3 - PORTAFOLIO DE PROYECTOS (PÚBLICA) =====
+  // Column 3: x=650
+  {
+    id: "projects",
+    type: "MODULE",
+    position: { x: 650, y: 50 },
+    data: {
+      label: "Proyectos",
+      description: "Portafolio de proyectos desarrollados con información detallada y colaboradores.",
+      fields: [
+        { name: "id", type: "string (slug)" },
+        { name: "name", type: "string" },
+        { name: "version", type: "string" },
+        { name: "description", type: "text" },
+        { name: "shortDescription", type: "string" },
+        { name: "projectUrl", type: "string" },
+        { name: "icon", type: "string" },
+        { name: "startDate", type: "date" },
+        { name: "endDate", type: "date | null" },
+        { name: "status", type: "enum(active, completed, archived)" },
+        { name: "company", type: "string | null" },
+        { name: "collaborators", type: "Collaborator[]" },
+        { name: "technologies", type: "string[]" },
+        { name: "isPublished", type: "boolean" },
+      ],
+      priority: 2,
+      phase: 2,
+      url: "/proyectos",
+      zone: "public"
+    },
+  },
+  {
+    id: "project-detail",
+    type: "MODULE",
+    position: { x: 650, y: 350 },
+    data: {
+      label: "Detalle de Proyecto",
+      description: "Vista individual de cada proyecto con toda su información.",
+      fields: [
+        { name: "id", type: "string" },
+        { name: "projectId", type: "string → Project" },
+        { name: "gallery", type: "string[]" },
+        { name: "readme", type: "markdown" },
+        { name: "challenges", type: "text" },
+        { name: "results", type: "text" },
+      ],
+      priority: 2,
+      phase: 2,
       zone: "public"
     },
   },
@@ -748,7 +807,7 @@ export const edges = [
   
   // Landing conecta con los flujos principales
   {
-    id: "e-landing-learning",
+    id: "e-landing-bitacora",
     source: "landing",
     target: "learning-paths",
     label: "navega a",
@@ -758,6 +817,13 @@ export const edges = [
     id: "e-landing-profile",
     source: "landing",
     target: "profile",
+    label: "navega a",
+    type: "NAVIGATION"
+  },
+  {
+    id: "e-landing-projects",
+    source: "landing",
+    target: "projects",
     label: "navega a",
     type: "NAVIGATION"
   },
@@ -804,6 +870,15 @@ export const edges = [
     id: "e-profile-skills",
     source: "profile",
     target: "skills",
+    label: "muestra",
+    type: "RELATIONSHIP"
+  },
+  
+  // ===== CONEXIONES FASE 3 - PORTAFOLIO DE PROYECTOS =====
+  {
+    id: "e-projects-detail",
+    source: "projects",
+    target: "project-detail",
     label: "muestra",
     type: "RELATIONSHIP"
   },
