@@ -7,6 +7,8 @@ const Legend = () => {
     { color: 'bg-green-500', label: 'EXTERNAL_SDK' },
     { color: 'bg-yellow-500', label: 'SERVICE' },
     { color: 'bg-orange-500', label: 'USER_ROLE' },
+    { color: 'bg-gray-500', label: 'NOTE' },
+    { color: 'bg-slate-400', label: 'MOCKUP' },
   ];
 
   return (

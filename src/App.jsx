@@ -1,19 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { ReactFlowProvider } from 'reactflow';
-import { projectMeta } from './data/projectData';
 import Canvas from './components/Canvas';
-import TopBar from './components/TopBar';
 import Legend from './components/Legend';
 import './App.css';
 
 function App() {
-  const [projectName] = useState(projectMeta.name);
-
-  const handleExport = useCallback(() => {
-    // Export functionality will be implemented here
-    console.log('Exporting project...');
-  }, []);
-
   return (
     <div style={{ 
       width: '100vw', 
@@ -37,7 +28,7 @@ function App() {
         </ReactFlowProvider>
         <div style={{ 
           position: 'absolute', 
-          top: '8px', 
+          top: '80px', 
           left: '8px', 
           zIndex: 10 
         }}>

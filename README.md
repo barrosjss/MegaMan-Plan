@@ -1,16 +1,38 @@
-# React + Vite
+# MegaMan Project Planner
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es un planeador visual diseñado para estructurar y organizar proyectos complejos como "MegaMan". Utiliza tecnologías modernas como React, React Flow y TailwindCSS para proporcionar una experiencia interactiva y visualmente atractiva.
 
-Currently, two official plugins are available:
+## Propósito
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+El objetivo principal de este planeador es permitir a los usuarios diseñar, visualizar y gestionar arquitecturas de sistemas de manera eficiente. Es ideal para proyectos que requieren una planificación modular y escalable.
 
-## React Compiler
+## Características
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Visualización de módulos y servicios:** Representación gráfica de los componentes del sistema.
+- **Interactividad:** Arrastra y conecta nodos para definir relaciones entre módulos.
+- **Personalización:** Personaliza los nodos y sus propiedades para adaptarlos a las necesidades del proyecto.
+- **Exportación:** Genera documentación basada en la arquitectura visual creada.
 
-## Expanding the ESLint configuration
+## Tecnologías Utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React:** Para la construcción de la interfaz de usuario.
+- **React Flow:** Para la creación de diagramas interactivos.
+- **TailwindCSS:** Para un diseño rápido y consistente.
+- **Vite:** Herramienta de desarrollo y construcción rápida.
+
+## Cómo usar
+
+1. Clona este repositorio.
+2. Instala las dependencias con `npm install`.
+3. Inicia el servidor de desarrollo con `npm run dev`.
+4. Accede a la aplicación en `http://localhost:5173`.
+
+## Próximos pasos
+
+- Integrar funcionalidades avanzadas como exportación a formatos específicos.
+- Mejorar la experiencia de usuario con más opciones de personalización.
+- Añadir soporte para integraciones con APIs externas.
+
+---
+
+*Este proyecto es una herramienta de planificación visual para proyectos como "MegaMan" y otros sistemas complejos.*
